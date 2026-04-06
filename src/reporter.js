@@ -129,10 +129,31 @@ export function renderJson(summaries, costlySessions, costlySubagents, grandTota
   }, null, 2);
 }
 
+function csvRow(s, cols, theme) {
+  const cost = theme.currency ? calcCost(s.usage, theme.currency) : null;
+  return cols.map(c => {
+    let val;
+    switch (c) {
+      case 'project':      val = theme.formatProject(s.project); break;
+      case 'sessions':     val = s.sessions; break;
+      case 'total_tokens': val = s.totalTokens; break;
+      case 'input':        val = s.usage.input_tokens ?? 0; break;
+      case 'cache_create': val = s.usage.cache_creation_input_tokens ?? 0; break;
+      case 'cache_read':   val = s.usage.cache_read_input_tokens ?? 0; break;
+      case 'output':       val = s.usage.output_tokens ?? 0; break;
+      case 'subagents':    val = s.subagentCount; break;
+      case 'cost':         val = cost !== null ? cost.toFixed(4) : ''; break;
+      default:             val = '';
+    }
+    const str = String(val);
+    return str.includes(',') ? `"${str.replace(/"/g, '""')}"` : str;
+  });
+}
+
 export function renderCsv(summaries, theme) {
   const cols = theme.columns ?? Object.keys(COL_HEADERS);
   const header = cols.join(',');
-  const rows = summaries.map(s => projectRow(s, cols, theme).join(','));
+  const rows = summaries.map(s => csvRow(s, cols, theme).join(','));
   return [header, ...rows].join('\n') + '\n';
 }
 
