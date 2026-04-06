@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "start": "node bin/analyze.js",
-    "test": "node --test test/**/*.test.js"
+    "test": "node --test test/*.test.js"
   },
   "dependencies": {
     "chalk": "^5.3.0",
