@@ -1,0 +1,4 @@
+node_modules/
+claude-token-report/
+*.log
+.DS_Store
