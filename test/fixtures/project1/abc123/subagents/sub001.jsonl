@@ -1,0 +1,2 @@
+{"type":"user","sessionId":"sub001","agentId":"subagent-1","timestamp":"2026-03-01T10:01:30.000Z","message":{"role":"user","content":"Search for TODO in src/"},"userType":"human","isSidechain":false}
+{"type":"assistant","sessionId":"sub001","agentId":"subagent-1","timestamp":"2026-03-01T10:01:35.000Z","message":{"role":"assistant","content":"Searching...","usage":{"input_tokens":400,"cache_creation_input_tokens":100,"cache_read_input_tokens":50,"output_tokens":60}}}
