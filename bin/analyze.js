@@ -4,6 +4,7 @@ import { createRequire } from 'module';
 import path from 'path';
 import { pathToFileURL } from 'url';
 
+import ora from 'ora';
 import { buildConfig } from '../src/config.js';
 import { parseAllProjects } from '../src/parser.js';
 import { summarizeProjects, findCostlySessions, findCostlySubagents, computeGrandTotals } from '../src/analyzer.js';
@@ -52,11 +53,14 @@ async function main() {
     sinceDate: opts.sinceDate,
   });
 
+  const spinner = ora('Scanning ~/.claude/projects…').start();
   let projects;
   try {
     projects = parseAllProjects(config.projectsDir, config);
+    const count = Object.keys(projects).length;
+    spinner.succeed(`Found ${count} project${count !== 1 ? 's' : ''}`);
   } catch (err) {
-    console.error(err.message);
+    spinner.fail(err.message);
     process.exit(1);
   }
 
