@@ -78,36 +78,43 @@ SINCE_DAYS=7 claude-tokens
 
 ### Table (default)
 
-The default output is a colorized terminal table:
+The default output is a colorized terminal display with a summary panel, borderless tables with inline bar charts, and compact number formatting:
 
 ```
-── Claude Token Usage ────────────────────────────────────────
-  Projects:  12    Sessions: 87
-  Total:     450,231,000 tokens
-    Input:         120,000
-    Cache create:  18,500,000
-    Cache read:    430,100,000
-    Output:        1,511,000
-  Subagents: 95 sessions (180,000,000 tokens)
+╭ Claude Token Usage ──────────────────────────────────────────╮
+│                                                              │
+│  Projects  12    Sessions  87                                │
+│                                                              │
+│  Total tokens  2,499,731,501                                 │
+│    ▸ Input              518,390  0.0%                        │
+│    ▸ Cache create    93,164,656  3.7%                        │
+│    ▸ Cache read   2,400,148,933  96.0%                       │
+│    ▸ Output           5,899,522  0.2%                        │
+│                                                              │
+│  Subagents  515 sessions  (1,021,536,546 tokens)             │
+│                                                              │
+╰──────────────────────────────────────────────────────────────╯
 
-── By Project ────────────────────────────────────────────────
-┌──────────────────────┬──────────┬───────────────┬─────────┬────────────┬───────────────┬─────────┬───────────────────┐
-│ Project              │ Sessions │ Total         │ Input   │ Cache+     │ Cache~        │ Output  │ Subagents         │
-├──────────────────────┼──────────┼───────────────┼─────────┼────────────┼───────────────┼─────────┼───────────────────┤
-│ my-project           │ 45       │ 280,000,000   │ 80,000  │ 12,000,000 │ 267,000,000   │ 920,000 │ 50 (100,000,000)  │
-│ another-project      │ 22       │ 100,000,000   │ 25,000  │  4,000,000 │  95,500,000   │ 475,000 │ 30 (55,000,000)   │
-└──────────────────────┴──────────┴───────────────┴─────────┴────────────┴───────────────┴─────────┴───────────────────┘
+── By Project ─────────────────────────────────────────────────
 
-── Top 10 Costliest Sessions ───────────────────────────────
-  [2025-04-01] my-project: 15,000,000 tokens
-    → refactor the authentication module to use JWT
+  Project                Sessions   Total  Input  Cache+  Cache~  Output  Subagents
+  ──────────────────────────────────────────────────────────────────────────────────
+  my-project                  45    1.8B  █████████████████████░░░  80.0K  12.0M  267.0M  920.0K  50 (100.0M)
+  another-project             22  100.0M  █████░░░░░░░░░░░░░░░░░░  25.0K   4.0M   95.5M  475.0K  30 (55.0M)
+  small-project                5   12.5M  █░░░░░░░░░░░░░░░░░░░░░░   3.2K  800.0K  11.5M   42.1K   2 (1.2M)
 
-── Top 5 Costliest Subagents ───────────────────────────────
-┌───┬──────────────┬──────────┬──────────┬───────────┬─────────┬────────┐
-│ # │ Project      │ Parent   │ File     │ Total     │ Input   │ Output │
-├───┼──────────────┼──────────┼──────────┼───────────┼─────────┼────────┤
-│ 1 │ my-project   │ abc123…  │ sub1.jsonl│ 5,000,000│ 4,800,000│200,000│
-└───┴──────────────┴──────────┴──────────┴───────────┴─────────┴────────┘
+  Top 10 Sessions
+  ──────────────────────────────────────────────────────────────
+   1.    1.8B  my-project              2025-04-01  abc12345…
+         → refactor the authentication module to use JWT
+   2.  100.0M  another-project         2025-03-28  def67890…
+         → add search indexing for products
+
+  Top 5 Subagents
+  ──────────────────────────────────────────────────────────────
+    Total  Project          Parent     File           Input  Output
+     5.0M  my-project       abc123…    sub1.jsonl     4.8M  200.0K
+     2.1M  another-project  def678…    sub2.jsonl     1.9M  150.3K
 ```
 
 ### Markdown
