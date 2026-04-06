@@ -1,11 +1,30 @@
 {
   "name": "claude-token-analyzer",
   "version": "1.0.0",
-  "description": "Analyze Claude Code token usage from ~/.claude/projects/ JSONL files",
+  "description": "Analyze Claude Code token usage across projects — terminal tables, Markdown, JSON, CSV output with theming support",
   "type": "module",
   "bin": {
-    "claude-tokens": "./bin/analyze.js"
+    "claude-tokens": "./bin/analyze.js",
+    "claude-token-analyzer": "./bin/analyze.js"
   },
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./config": "./src/config.js",
+    "./parser": "./src/parser.js",
+    "./analyzer": "./src/analyzer.js",
+    "./reporter": "./src/reporter.js",
+    "./themes/default": "./themes/default.js",
+    "./themes/minimal": "./themes/minimal.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "themes/",
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "start": "node bin/analyze.js",
     "test": "node --test test/**/*.test.js"
@@ -18,6 +37,26 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "keywords": ["claude", "token", "usage", "analyzer", "cli"],
-  "license": "MIT"
+  "keywords": [
+    "claude",
+    "claude-code",
+    "token",
+    "usage",
+    "analyzer",
+    "cli",
+    "anthropic",
+    "llm",
+    "cost",
+    "tokens"
+  ],
+  "author": "leandropessini",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pessini/claude-token-analyzer.git"
+  },
+  "homepage": "https://github.com/pessini/claude-token-analyzer#readme",
+  "bugs": {
+    "url": "https://github.com/pessini/claude-token-analyzer/issues"
+  }
 }

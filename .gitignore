@@ -6,3 +6,4 @@ claude-token-report/
 .env.*
 .vscode/
 .idea/
+docs/
