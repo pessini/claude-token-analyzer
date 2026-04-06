@@ -4,8 +4,8 @@
   "description": "Analyze Claude Code token usage across projects — terminal tables, Markdown, JSON, CSV output with theming support",
   "type": "module",
   "bin": {
-    "claude-tokens": "./bin/analyze.js",
-    "claude-token-analyzer": "./bin/analyze.js"
+    "claude-tokens": "bin/analyze.js",
+    "claude-token-analyzer": "bin/analyze.js"
   },
   "main": "./index.js",
   "exports": {
